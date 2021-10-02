@@ -2824,7 +2824,8 @@ module.exports = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "fetchTurbineData": () => (/* binding */ fetchTurbineData)
+/* harmony export */   "fetchTurbineData": () => (/* binding */ fetchTurbineData),
+/* harmony export */   "fetchReportData": () => (/* binding */ fetchReportData)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
@@ -2851,24 +2852,59 @@ var fetchTurbineData = /*#__PURE__*/function () {
 
           case 5:
             data = _context.sent;
-            console.log(data);
             return _context.abrupt("return", data);
 
-          case 10:
-            _context.prev = 10;
+          case 9:
+            _context.prev = 9;
             _context.t0 = _context["catch"](0);
             throw new Error(_context.t0);
 
-          case 13:
+          case 12:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 10]]);
+    }, _callee, null, [[0, 9]]);
   }));
 
   return function fetchTurbineData() {
     return _ref.apply(this, arguments);
+  };
+}();
+var fetchReportData = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2($id) {
+    var data;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            _context2.next = 3;
+            return fetch("/turbineData/".concat($id));
+
+          case 3:
+            _context2.next = 5;
+            return _context2.sent.json();
+
+          case 5:
+            data = _context2.sent;
+            return _context2.abrupt("return", data);
+
+          case 9:
+            _context2.prev = 9;
+            _context2.t0 = _context2["catch"](0);
+            throw new Error(_context2.t0);
+
+          case 12:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[0, 9]]);
+  }));
+
+  return function fetchReportData(_x) {
+    return _ref2.apply(this, arguments);
   };
 }();
 
@@ -3010,7 +3046,7 @@ var ReactApp = function ReactApp() {
       turbineData = _useState2[0],
       setTurbineData = _useState2[1];
 
-  var onButtonClick = /*#__PURE__*/function () {
+  var onTurbineButtonClick = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
       var data;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
@@ -3022,10 +3058,10 @@ var ReactApp = function ReactApp() {
 
             case 2:
               data = _context.sent;
-              setTurbineData(data);
-              console.log("data", data);
+              // setTurbineData(data);
+              console.log("turbine data", data);
 
-            case 5:
+            case 4:
             case "end":
               return _context.stop();
           }
@@ -3033,8 +3069,36 @@ var ReactApp = function ReactApp() {
       }, _callee);
     }));
 
-    return function onButtonClick() {
+    return function onTurbineButtonClick() {
       return _ref.apply(this, arguments);
+    };
+  }();
+
+  var onReportButtonClick = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+      var data;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return (0,_api__WEBPACK_IMPORTED_MODULE_2__.fetchReportData)(3);
+
+            case 2:
+              data = _context2.sent;
+              setTurbineData(data.report);
+              console.log("report data", data.report);
+
+            case 5:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+
+    return function onReportButtonClick() {
+      return _ref2.apply(this, arguments);
     };
   }();
 
@@ -3054,8 +3118,13 @@ var ReactApp = function ReactApp() {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
             type: "button",
             className: "btn btn-outline-secondary btn-sm",
-            onClick: onButtonClick,
-            children: "Secondary"
+            onClick: onTurbineButtonClick,
+            children: "Fetch turbines"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+            type: "button",
+            className: "btn btn-outline-secondary btn-sm",
+            onClick: onReportButtonClick,
+            children: "Fetch a report"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
             className: "card-body",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {

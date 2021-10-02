@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-// use App\Models\Turbine;
-use App\Http\TurbineComponents\Turbine;
+use App\Models\Turbine;
+use App\Http\TurbineComponents\TurbineReport;
 
 class TurbineDataController extends Controller
 {
@@ -15,21 +15,21 @@ class TurbineDataController extends Controller
      */
     public function index()
     {
-        // $stores = Turbine::all()->pluck('storeNumber', 'storeName');
-        // $stores = Turbine::all();
+        // $turbines = Turbine::all()->pluck('turbineId', 'lat', 'lng');
+        $turbines = Turbine::all();
 
         // $stores = ['first' => "1", "second" => "2"];
         // json_encode($stores);
-        $turbineReport = $this->generateTurbineReport();
+        // $turbineReport = $this->generateTurbineReport();
 
-        return $turbineReport;
+        return $turbines;
     } 
 
-    private function generateTurbineReport()
-    {
-        $turbine = new Turbine(100);
-        return $turbine->report();
-    }
+    // private function generateTurbineReport()
+    // {
+    //     $turbineReport = new TurbineReport(100);
+    //     return $turbineReport->report();
+    // }
 
      /**
      * Display the specified resource.
@@ -39,7 +39,10 @@ class TurbineDataController extends Controller
      */
     public function show($id = null)
     {
-        // $store = Store::where('storeNumber', $id)->get();
-        // return $store;
+        $turbine = Turbine::where('id', $id)->get();
+
+        // $turbineReport = $this->generateTurbineReport();
+        $turbineReport = new TurbineReport($turbine);
+        return $turbineReport->report();
     }
 }

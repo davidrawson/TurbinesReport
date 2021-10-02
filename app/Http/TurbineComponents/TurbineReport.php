@@ -2,9 +2,10 @@
 
 namespace App\Http\TurbineComponents;
 
+use App\Models\Turbine;
 use Illuminate\View\Compilers\ComponentTagCompiler;
 
-class Turbine
+class TurbineReport
 {
     /**
      * @var Component[] $components
@@ -18,10 +19,11 @@ class Turbine
      * @param int $numberOfComponents
      * @param int $id
      */
-    public function __construct(int $numberOfComponents = 100, int $id = 0)
+    // public function __construct(int $numberOfComponents = 100, int $id = 0)
+    public function __construct($turbineDetails)
     {
-        $this->id = $id;
-        $this->generateReport($numberOfComponents);
+        $this->turbineDetails = $turbineDetails;
+        $this->generateReport();
     }
 
     /**
@@ -34,7 +36,7 @@ class Turbine
     /**
      * @param int $numberOfComponents
      */
-    private function generateReport(int $numberOfComponents)
+    private function generateReport()
     {
         // for ($i = 1; $i <= 100; $i++) {
         //     if ($i % 3 === 0) {
@@ -44,7 +46,7 @@ class Turbine
 
 
         $y = 1;
-        while ($y <= $numberOfComponents) {
+        while ($y <= 100) {
         // for ($y = 1; $y <= 100; $y++) {
             $component = new Component($y, $this->id);
             if ($y % 3 === 0) {
@@ -66,26 +68,27 @@ class Turbine
      */
     public function report()
     {
-        $report = [];
+        $damageReport = [];
         if (empty($this->components)) return;
         foreach ($this->components as $key => $component) {
             if ($component->hasDamage()) {
                 // array_push($report, $component->damagesAsString());
                 // $report[$component->getId()] = $component->damagesAsString();
-                $report[] = ["id" => $key, "content" => $component->damagesAsString()];
+                $damageReport[] = ["id" => $key, "content" => $component->damagesAsString()];
 
             } else {
                 // array_push($report, "{$component->getId()}");
                 // $report[$component->getId()] = $component->getId();
-                $report[] = ["id" => $key, "content" => $key + 1];
+                $damageReport[] = ["id" => $key, "content" => $key + 1];
 
             }
         }
 
+        $fullReport = ["turbine" => $this->turbineDetails, "report" => $damageReport];
         // // reformat that array
         // for ($y = 1; $y <= 100; $y++) {
 
         // }
-        return json_encode($report);
+        return json_encode($fullReport);
     }
 }
