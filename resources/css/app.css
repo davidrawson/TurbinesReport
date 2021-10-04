@@ -18,3 +18,16 @@
     border-bottom: #ddd solid 1px;
     pointer-events: none;
 }
+
+.Map {
+    height: 100vh;
+    width: 100%;
+}
+
+.windTurbine {
+    width: 50;
+    height: 50;
+}
+.hover {
+    background-color: #0078d4;
+}

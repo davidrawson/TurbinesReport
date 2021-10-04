@@ -38,6 +38,40 @@
         "Liberation Mono", "Courier New", monospace;
 }
 
+.react-scrollable-list {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 300px;
+    width: 400px;
+    overflow-y: scroll;
+    border: #ddd solid 1px;
+}
+
+.react-scrollable-list-item {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 30px;
+    padding: 5px;
+    background-color: #f2f2f2;
+    border-bottom: #ddd solid 1px;
+    pointer-events: none;
+}
+
+.Map {
+    height: 100vh;
+    width: 100%;
+}
+
+.windTurbine {
+    width: 50;
+    height: 50;
+}
+.hover {
+    background-color: #0078d4;
+}
+
 *,
 *::before,
 *::after {
@@ -10420,30 +10454,4 @@ a.text-dark:focus {
         color: inherit;
         border-color: #dee2e6;
     }
-}
-
-.react-scrollable-list {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    height: 300px;
-    width: 400px;
-    overflow-y: scroll;
-    border: #ddd solid 1px;
-}
-
-.react-scrollable-list-item {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    height: 30px;
-    padding: 5px;
-    background-color: #f2f2f2;
-    border-bottom: #ddd solid 1px;
-    pointer-events: none;
-}
-
-.Map {
-    height: 100vh;
-    width: 100%;
 }

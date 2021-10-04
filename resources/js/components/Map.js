@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import GoogleMapReact from "google-map-react";
 import Marker from "./Marker";
 import { fetchTurbineData } from "../api";
+// import windTurbine from "../../images/wind_turbine.png";
 
-const Map = () => {
+const Map = ({ setSelectedMarker, setTurbineInfo }) => {
     const [turbineData, setTurbineData] = useState([]);
 
     // Should this be useEffect()? Just needs done on mount
@@ -11,12 +12,15 @@ const Map = () => {
         const getTurbineData = async () => {
             const data = await fetchTurbineData();
             setTurbineData(data);
+            // setTurbineInfo(data);
             console.log("turbine data", data);
         };
         getTurbineData();
     }, []);
 
     console.log("api ", process.env.MIX_REACT_APP_GOOGLE_KEY);
+
+    // const onMarkerClick = (marker) => setSelectedMarker(marker);
 
     if (turbineData.length < 1) return <div>Loading...</div>;
 
@@ -34,15 +38,26 @@ const Map = () => {
                 defaultZoom={16}
                 // distanceToMouse={distanceToMouse}
             >
-                {turbineData.map(({ lat, lng, id, turbineName }) => {
+                {turbineData.map((marker) => {
                     return (
                         <Marker
-                            key={id}
-                            lat={lat}
-                            lng={lng}
-                            text={id}
-                            tooltip={turbineName}
+                            key={marker.id}
+                            lat={marker.lat}
+                            lng={marker.lng}
+                            id={marker.id}
+                            tooltip={marker.turbineName}
+                            // selectedMarker={selectedMarker}
+                            setSelectedMarker={setSelectedMarker}
                         />
+                        // <img
+                        //     className="markerImage"
+                        //     key={marker.id}
+                        //     src={windTurbine}
+                        //     alt="marker"
+                        //     width="50"
+                        //     height="50"
+                        //     onClick={onMarkerClick(marker)}
+                        // />
                     );
                 })}
             </GoogleMapReact>

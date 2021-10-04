@@ -1,20 +1,28 @@
 import React from "react";
 import windTurbine from "../../images/wind_turbine.png";
 
-const Marker = ({ text, tooltip, $hover }) => {
+const Marker = ({ setSelectedMarker, id, tooltip, $hover }) => {
+    // const onMarkerClick = (marker) => setSelectedMarker(marker);
+
     const handleClick = () => {
         console.log(`You clicked on ${tooltip}`);
+        console.log(`id ${id}`);
+        setSelectedMarker(id);
+
+        // some kind of toggle for visible for a highlight
+        // console.log(`Selected marker  ${selectedMarker}`);
     };
 
     return (
-        <div
-            className={$hover ? "circle hover" : "circle"}
-            onClick={handleClick}
-        >
-            <img src={windTurbine} alt="Turbine" width="50" height="50" />
-            <span className="circleText" title={tooltip}>
-                {text}
-            </span>
+        <div onClick={handleClick}>
+            <img
+                className="windTurbine"
+                src={windTurbine}
+                alt="Turbine"
+                width="80"
+                height="80"
+            />
+            <span>{tooltip}</span>
         </div>
     );
 };

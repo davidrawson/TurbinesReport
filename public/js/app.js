@@ -3565,16 +3565,13 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
- // import { QueryClient, QueryClientProvider } from "react-query";
 
 
 
 
 
 
-var GlobalStyles = (0,styled_components__WEBPACK_IMPORTED_MODULE_4__.createGlobalStyle)(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  body {\n    margin: 0;\n  }\n"]))); // Create a client
-// const queryClient = new QueryClient();
-
+var GlobalStyles = (0,styled_components__WEBPACK_IMPORTED_MODULE_4__.createGlobalStyle)(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  body {\n    margin: 0;\n  }\n"])));
 react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react__WEBPACK_IMPORTED_MODULE_0__.StrictMode, {
   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(GlobalStyles, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_ReactApp__WEBPACK_IMPORTED_MODULE_2__.ReactApp, {})]
 }), document.getElementById("root"));
@@ -3664,11 +3661,15 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+ // import windTurbine from "../../images/wind_turbine.png";
 
 
 
 
-var Map = function Map() {
+var Map = function Map(_ref) {
+  var setSelectedMarker = _ref.setSelectedMarker,
+      setTurbineInfo = _ref.setTurbineInfo;
+
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
       turbineData = _useState2[0],
@@ -3677,7 +3678,7 @@ var Map = function Map() {
 
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     var getTurbineData = /*#__PURE__*/function () {
-      var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
         var data;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
@@ -3688,7 +3689,8 @@ var Map = function Map() {
 
               case 2:
                 data = _context.sent;
-                setTurbineData(data);
+                setTurbineData(data); // setTurbineInfo(data);
+
                 console.log("turbine data", data);
 
               case 5:
@@ -3700,13 +3702,14 @@ var Map = function Map() {
       }));
 
       return function getTurbineData() {
-        return _ref.apply(this, arguments);
+        return _ref2.apply(this, arguments);
       };
     }();
 
     getTurbineData();
   }, []);
-  console.log("api ", "AIzaSyCRVrpY6GQKOi49Nh8l66H6jVMIbZVuiMc");
+  console.log("api ", "AIzaSyBoQfVRKpJsCt1zOOM1YxCJjwQ3OyeT1jY"); // const onMarkerClick = (marker) => setSelectedMarker(marker);
+
   if (turbineData.length < 1) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
     children: "Loading..."
   });
@@ -3717,7 +3720,7 @@ var Map = function Map() {
     }), ";", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(google_map_react__WEBPACK_IMPORTED_MODULE_2__["default"], {
       bootstrapURLKeys: {
         // remove the key if you want to fork
-        key: "AIzaSyCRVrpY6GQKOi49Nh8l66H6jVMIbZVuiMc",
+        key: "AIzaSyBoQfVRKpJsCt1zOOM1YxCJjwQ3OyeT1jY",
         language: "en",
         region: "US"
       },
@@ -3727,17 +3730,24 @@ var Map = function Map() {
       },
       defaultZoom: 16 // distanceToMouse={distanceToMouse}
       ,
-      children: turbineData.map(function (_ref2) {
-        var lat = _ref2.lat,
-            lng = _ref2.lng,
-            id = _ref2.id,
-            turbineName = _ref2.turbineName;
+      children: turbineData.map(function (marker) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Marker__WEBPACK_IMPORTED_MODULE_3__["default"], {
-          lat: lat,
-          lng: lng,
-          text: id,
-          tooltip: turbineName
-        }, id);
+          lat: marker.lat,
+          lng: marker.lng,
+          id: marker.id,
+          tooltip: marker.turbineName // selectedMarker={selectedMarker}
+          ,
+          setSelectedMarker: setSelectedMarker
+        }, marker.id) // <img
+        //     className="markerImage"
+        //     key={marker.id}
+        //     src={windTurbine}
+        //     alt="marker"
+        //     width="50"
+        //     height="50"
+        //     onClick={onMarkerClick(marker)}
+        // />
+        ;
       })
     })]
   });
@@ -3767,26 +3777,29 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Marker = function Marker(_ref) {
-  var text = _ref.text,
+  var setSelectedMarker = _ref.setSelectedMarker,
+      id = _ref.id,
       tooltip = _ref.tooltip,
       $hover = _ref.$hover;
 
+  // const onMarkerClick = (marker) => setSelectedMarker(marker);
   var handleClick = function handleClick() {
     console.log("You clicked on ".concat(tooltip));
+    console.log("id ".concat(id));
+    setSelectedMarker(id); // some kind of toggle for visible for a highlight
+    // console.log(`Selected marker  ${selectedMarker}`);
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-    className: $hover ? "circle hover" : "circle",
     onClick: handleClick,
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+      className: "windTurbine",
       src: _images_wind_turbine_png__WEBPACK_IMPORTED_MODULE_1__["default"],
       alt: "Turbine",
-      width: "50",
-      height: "50"
+      width: "80",
+      height: "80"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-      className: "circleText",
-      title: tooltip,
-      children: text
+      children: tooltip
     })]
   });
 };
@@ -3806,21 +3819,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ReactApp": () => (/* binding */ ReactApp)
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../api */ "./resources/js/api.js");
-/* harmony import */ var _ReactApp_styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ReactApp.styles */ "./resources/js/components/ReactApp.styles.js");
-/* harmony import */ var _settings__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./settings */ "./resources/js/components/settings.js");
-/* harmony import */ var _Report__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Report */ "./resources/js/components/Report.js");
-/* harmony import */ var _Map__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Map */ "./resources/js/components/Map.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _ReactApp_styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ReactApp.styles */ "./resources/js/components/ReactApp.styles.js");
+/* harmony import */ var _Report__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Report */ "./resources/js/components/Report.js");
+/* harmony import */ var _Map__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Map */ "./resources/js/components/Map.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -3833,98 +3836,63 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
+ // import { fetchTurbineData, fetchReportData } from "../api";
+// import ReactScrollableList from "react-scrollable-list";
 
- // import ReactScrollableList from "react-scrollable-list";
-
-
+ // import { containerStyle, center, options } from "./settings";
 
 
 
 
 
 var ReactApp = function ReactApp() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+  // const [turbineData, setTurbineData] = useState([]);
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
-      turbineData = _useState2[0],
-      setTurbineData = _useState2[1];
+      turbineInfo = _useState2[0],
+      setTurbineInfo = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
       _useState4 = _slicedToArray(_useState3, 2),
-      turbineInfo = _useState4[0],
-      setTurbineInfo = _useState4[1];
-
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
-    id: 3
-  }),
-      _useState6 = _slicedToArray(_useState5, 2),
-      selectedMarker = _useState6[0],
-      setSelectedMarker = _useState6[1];
-
-  var onTurbineButtonClick = /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-      var data;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.next = 2;
-              return (0,_api__WEBPACK_IMPORTED_MODULE_2__.fetchTurbineData)();
-
-            case 2:
-              data = _context.sent;
-              // setTurbineData(data);
-              console.log("turbine data", data);
-
-            case 4:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }));
-
-    return function onTurbineButtonClick() {
-      return _ref.apply(this, arguments);
-    };
-  }();
-
-  var onReportButtonClick = /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-      var data;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              _context2.next = 2;
-              return (0,_api__WEBPACK_IMPORTED_MODULE_2__.fetchReportData)(3);
-
-            case 2:
-              data = _context2.sent;
-              setTurbineData(data.report);
-              setTurbineInfo(data.turbine);
-              console.log("report data", data.report);
-
-            case 6:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee2);
-    }));
-
-    return function onReportButtonClick() {
-      return _ref2.apply(this, arguments);
-    };
-  }(); // if (!isLoaded) return <div>Map Loading...</div>;
+      selectedMarker = _useState4[0],
+      setSelectedMarker = _useState4[1]; // const onTurbineButtonClick = async () => {
+  //     const data = await fetchTurbineData();
+  //     // setTurbineData(data);
+  //     console.log("turbine data", data);
+  // };
+  // useEffect(() => {
+  //     console.log("in useEffect");
+  //     const getReportData = async () => {
+  //         const data = await fetchReportData(selectedMarker);
+  //         setTurbineData(data.report);
+  //         setTurbineInfo(data.turbine);
+  //         console.log("report data", data.report);
+  //     };
+  //     getReportData();
+  // }, [selectedMarker]);
+  // now it's wired up this could be useEffect
+  // const onReportButtonClick = async () => {
+  //     const data = await fetchReportData(selectedMarker);
+  //     setTurbineData(data.report);
+  //     setTurbineInfo(data.turbine);
+  //     console.log("report data", data.report);
+  // };
+  // if (!isLoaded) return <div>Map Loading...</div>;
 
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_ReactApp_styles__WEBPACK_IMPORTED_MODULE_3__.Wrapper, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Report__WEBPACK_IMPORTED_MODULE_5__["default"], {
-        id: selectedMarker.id
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_ReactApp_styles__WEBPACK_IMPORTED_MODULE_1__.Wrapper, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Report__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        selectedMarker: selectedMarker // turbineData={turbineInfo}
+        // turbineInfo={turbineInfo}
+
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Map__WEBPACK_IMPORTED_MODULE_6__["default"], {})
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Map__WEBPACK_IMPORTED_MODULE_3__["default"] // selectedMarker={selectedMarker}
+      , {
+        setSelectedMarker: setSelectedMarker // setTurbineInfo={setTurbineInfo}
+
+      })
     })]
   });
 }; // export default ReactApp;
@@ -3995,7 +3963,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var Report = function Report() {
+var Report = function Report(_ref) {
+  var selectedMarker = _ref.selectedMarker;
+
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
       turbineData = _useState2[0],
@@ -4004,37 +3974,60 @@ var Report = function Report() {
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
       _useState4 = _slicedToArray(_useState3, 2),
       turbineInfo = _useState4[0],
-      setTurbineInfo = _useState4[1];
+      setTurbineInfo = _useState4[1]; // const onReportButtonClick = async () => {
+  //     const data = await fetchReportData(selectedMarker.id);
+  //     setTurbineData(data.report);
+  //     setTurbineInfo(data.turbine);
+  //     console.log("report data", data.report);
+  //     console.log("turbine data", data.turbine);
+  // };
 
-  var onReportButtonClick = /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-      var data;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.next = 2;
-              return (0,_api__WEBPACK_IMPORTED_MODULE_3__.fetchReportData)(3);
 
-            case 2:
-              data = _context.sent;
-              setTurbineData(data.report);
-              setTurbineInfo(data.turbine);
-              console.log("report data", data.report);
-              console.log("turbine data", data.turbine);
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    var getReportData = /*#__PURE__*/function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var data;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return (0,_api__WEBPACK_IMPORTED_MODULE_3__.fetchReportData)(selectedMarker);
 
-            case 7:
-            case "end":
-              return _context.stop();
+              case 2:
+                data = _context.sent;
+
+                if (selectedMarker > 0) {
+                  setTurbineData(data.report);
+                  setTurbineInfo(data.turbine);
+                }
+
+                console.log("report data", data.report);
+                console.log("turbine data", data.turbine);
+
+              case 6:
+              case "end":
+                return _context.stop();
+            }
           }
-        }
-      }, _callee);
-    }));
+        }, _callee);
+      }));
 
-    return function onReportButtonClick() {
-      return _ref.apply(this, arguments);
-    };
-  }();
+      return function getReportData() {
+        return _ref2.apply(this, arguments);
+      };
+    }();
+
+    getReportData();
+  }, [selectedMarker]); // const { data: reportData } = useQuery(
+  //     [selectedMarker],
+  //     () => fetchReportData(selectedMarker),
+  //     {
+  //         enabled: !!selectedMarker,
+  //         refetchOnWindowFocus: false,
+  //         staleTime: 60 * 1000 * 5, // 5 minutes
+  //     }
+  // );
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
     className: "container mt-5",
@@ -4044,11 +4037,11 @@ var Report = function Report() {
         className: "col-md-8",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
           className: "card text-center",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
             className: "card-header",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h2", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h2", {
               children: "React Component in Laravel"
-            })
+            }), turbineInfo ? turbineInfo.first : null]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
             type: "button",
             className: "btn btn-outline-secondary btn-sm" // onClick={onTurbineButtonClick}
@@ -4056,8 +4049,8 @@ var Report = function Report() {
             children: "Fetch turbines"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
             type: "button",
-            className: "btn btn-outline-secondary btn-sm",
-            onClick: onReportButtonClick,
+            className: "btn btn-outline-secondary btn-sm" // onClick={onReportButtonClick}
+            ,
             children: "Fetch a report"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
             className: "card-body",
@@ -4079,39 +4072,6 @@ var Report = function Report() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Report);
-
-/***/ }),
-
-/***/ "./resources/js/components/settings.js":
-/*!*********************************************!*\
-  !*** ./resources/js/components/settings.js ***!
-  \*********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "containerStyle": () => (/* binding */ containerStyle),
-/* harmony export */   "center": () => (/* binding */ center),
-/* harmony export */   "options": () => (/* binding */ options)
-/* harmony export */ });
-// Settings for the map goes inside this file
-// import mapStyles from "./mapStyles";
-var containerStyle = {
-  width: "100%",
-  height: "100vh"
-}; // Center on Kalmar
-
-var center = {
-  lat: 55.95,
-  lng: -3.19
-}; // Disable default UI
-
-var options = {
-  // styles: mapStyles,
-  // disableDefaultUI: true,
-  zoomControl: true
-};
 
 /***/ }),
 
