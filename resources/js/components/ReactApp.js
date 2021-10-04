@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import { fetchTurbineData, fetchReportData } from "../api";
-import ReactScrollableList from "react-scrollable-list";
-import { useQuery } from "react-query";
+// import ReactScrollableList from "react-scrollable-list";
+import { Wrapper, LoadingView } from "./ReactApp.styles";
+import { containerStyle, center, options } from "./settings";
+import Report from "./Report";
+import Map from "./Map";
 
 export const ReactApp = () => {
     const [turbineData, setTurbineData] = useState([]);
+    const [turbineInfo, setTurbineInfo] = useState([]);
+    const [selectedMarker, setSelectedMarker] = useState({ id: 3 });
 
     const onTurbineButtonClick = async () => {
         const data = await fetchTurbineData();
@@ -15,47 +20,21 @@ export const ReactApp = () => {
     const onReportButtonClick = async () => {
         const data = await fetchReportData(3);
         setTurbineData(data.report);
+        setTurbineInfo(data.turbine);
         console.log("report data", data.report);
     };
 
-    return (
-        <div className="container mt-5">
-            <div className="row justify-content-center">
-                <div className="col-md-8">
-                    <div className="card text-center">
-                        <div className="card-header">
-                            <h2>React Component in Laravel</h2>
-                        </div>
-                        <button
-                            type="button"
-                            className="btn btn-outline-secondary btn-sm"
-                            onClick={onTurbineButtonClick}
-                        >
-                            Fetch turbines
-                        </button>
-                        <button
-                            type="button"
-                            className="btn btn-outline-secondary btn-sm"
-                            onClick={onReportButtonClick}
-                        >
-                            Fetch a report
-                        </button>
-                        <div className="card-body">
-                            <div>
-                                <ReactScrollableList
-                                    listItems={turbineData}
-                                    heightOfItem={30}
-                                    maxItemsToRender={20}
-                                    style={{ color: "#333" }}
-                                />
-                            </div>
-                        </div>
-                    </div>
+    // if (!isLoaded) return <div>Map Loading...</div>;
 
-                    {turbineData ? turbineData.first : null}
-                </div>
+    return (
+        <Wrapper>
+            <div>
+                <Report id={selectedMarker.id}></Report>
             </div>
-        </div>
+            <div>
+                <Map />
+            </div>
+        </Wrapper>
     );
 };
 

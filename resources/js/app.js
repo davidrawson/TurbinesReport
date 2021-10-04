@@ -7,7 +7,7 @@
 require("./bootstrap");
 
 import React from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
+// import { QueryClient, QueryClientProvider } from "react-query";
 import { createGlobalStyle } from "styled-components";
 import ReactDOM from "react-dom";
 import { ReactApp } from "./components/ReactApp";
@@ -19,14 +19,14 @@ const GlobalStyles = createGlobalStyle`
 `;
 
 // Create a client
-const queryClient = new QueryClient();
+// const queryClient = new QueryClient();
 
 ReactDOM.render(
     <React.StrictMode>
-        <QueryClientProvider client={queryClient}>
-            <GlobalStyles />
-            <ReactApp />
-        </QueryClientProvider>
+        {/* <QueryClientProvider client={queryClient}> */}
+        <GlobalStyles />
+        <ReactApp />
+        {/* </QueryClientProvider> */}
     </React.StrictMode>,
     document.getElementById("root")
 );
