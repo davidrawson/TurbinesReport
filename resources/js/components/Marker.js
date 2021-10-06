@@ -1,16 +1,9 @@
 import React from "react";
 import windTurbine from "../../images/wind_turbine.png";
 
-const Marker = ({ setSelectedMarker, id, tooltip, $hover }) => {
-    // const onMarkerClick = (marker) => setSelectedMarker(marker);
-
+const Marker = ({ setSelectedMarker, id, tooltip }) => {
     const handleClick = () => {
-        console.log(`You clicked on ${tooltip}`);
-        console.log(`id ${id}`);
         setSelectedMarker(id);
-
-        // some kind of toggle for visible for a highlight
-        // console.log(`Selected marker  ${selectedMarker}`);
     };
 
     return (

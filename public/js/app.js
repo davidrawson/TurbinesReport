@@ -3661,20 +3661,16 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
- // import windTurbine from "../../images/wind_turbine.png";
-
 
 
 
 var Map = function Map(_ref) {
-  var setSelectedMarker = _ref.setSelectedMarker,
-      setTurbineInfo = _ref.setTurbineInfo;
+  var setSelectedMarker = _ref.setSelectedMarker;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
       turbineData = _useState2[0],
-      setTurbineData = _useState2[1]; // Should this be useEffect()? Just needs done on mount
-
+      setTurbineData = _useState2[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     var getTurbineData = /*#__PURE__*/function () {
@@ -3689,11 +3685,9 @@ var Map = function Map(_ref) {
 
               case 2:
                 data = _context.sent;
-                setTurbineData(data); // setTurbineInfo(data);
+                setTurbineData(data); // console.log("turbine data", data);
 
-                console.log("turbine data", data);
-
-              case 5:
+              case 4:
               case "end":
                 return _context.stop();
             }
@@ -3708,18 +3702,13 @@ var Map = function Map(_ref) {
 
     getTurbineData();
   }, []);
-  console.log("api ", "AIzaSyBoQfVRKpJsCt1zOOM1YxCJjwQ3OyeT1jY"); // const onMarkerClick = (marker) => setSelectedMarker(marker);
-
   if (turbineData.length < 1) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
     children: "Loading..."
   });
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-    className: "Map",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h3", {
-      children: "Google map here"
-    }), ";", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(google_map_react__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+    className: "map-container",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(google_map_react__WEBPACK_IMPORTED_MODULE_2__["default"], {
       bootstrapURLKeys: {
-        // remove the key if you want to fork
         key: "AIzaSyBoQfVRKpJsCt1zOOM1YxCJjwQ3OyeT1jY",
         language: "en",
         region: "US"
@@ -3728,28 +3717,18 @@ var Map = function Map(_ref) {
         lat: 55.682,
         lng: -4.806
       },
-      defaultZoom: 16 // distanceToMouse={distanceToMouse}
-      ,
+      defaultZoom: 16,
+      mapType: "Satellite",
       children: turbineData.map(function (marker) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Marker__WEBPACK_IMPORTED_MODULE_3__["default"], {
           lat: marker.lat,
           lng: marker.lng,
           id: marker.id,
-          tooltip: marker.turbineName // selectedMarker={selectedMarker}
-          ,
+          tooltip: marker.turbineName,
           setSelectedMarker: setSelectedMarker
-        }, marker.id) // <img
-        //     className="markerImage"
-        //     key={marker.id}
-        //     src={windTurbine}
-        //     alt="marker"
-        //     width="50"
-        //     height="50"
-        //     onClick={onMarkerClick(marker)}
-        // />
-        ;
+        }, marker.id);
       })
-    })]
+    })
   });
 };
 
@@ -3779,15 +3758,10 @@ __webpack_require__.r(__webpack_exports__);
 var Marker = function Marker(_ref) {
   var setSelectedMarker = _ref.setSelectedMarker,
       id = _ref.id,
-      tooltip = _ref.tooltip,
-      $hover = _ref.$hover;
+      tooltip = _ref.tooltip;
 
-  // const onMarkerClick = (marker) => setSelectedMarker(marker);
   var handleClick = function handleClick() {
-    console.log("You clicked on ".concat(tooltip));
-    console.log("id ".concat(id));
-    setSelectedMarker(id); // some kind of toggle for visible for a highlight
-    // console.log(`Selected marker  ${selectedMarker}`);
+    setSelectedMarker(id);
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
@@ -3836,66 +3810,33 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
- // import { fetchTurbineData, fetchReportData } from "../api";
-// import ReactScrollableList from "react-scrollable-list";
 
- // import { containerStyle, center, options } from "./settings";
 
 
 
 
 
 var ReactApp = function ReactApp() {
-  // const [turbineData, setTurbineData] = useState([]);
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
       _useState2 = _slicedToArray(_useState, 2),
-      turbineInfo = _useState2[0],
-      setTurbineInfo = _useState2[1];
+      selectedMarker = _useState2[0],
+      setSelectedMarker = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
-      _useState4 = _slicedToArray(_useState3, 2),
-      selectedMarker = _useState4[0],
-      setSelectedMarker = _useState4[1]; // const onTurbineButtonClick = async () => {
-  //     const data = await fetchTurbineData();
-  //     // setTurbineData(data);
-  //     console.log("turbine data", data);
-  // };
-  // useEffect(() => {
-  //     console.log("in useEffect");
-  //     const getReportData = async () => {
-  //         const data = await fetchReportData(selectedMarker);
-  //         setTurbineData(data.report);
-  //         setTurbineInfo(data.turbine);
-  //         console.log("report data", data.report);
-  //     };
-  //     getReportData();
-  // }, [selectedMarker]);
-  // now it's wired up this could be useEffect
-  // const onReportButtonClick = async () => {
-  //     const data = await fetchReportData(selectedMarker);
-  //     setTurbineData(data.report);
-  //     setTurbineInfo(data.turbine);
-  //     console.log("report data", data.report);
-  // };
-  // if (!isLoaded) return <div>Map Loading...</div>;
-
-
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_ReactApp_styles__WEBPACK_IMPORTED_MODULE_1__.Wrapper, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Report__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        selectedMarker: selectedMarker // turbineData={turbineInfo}
-        // turbineInfo={turbineInfo}
-
-      })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Map__WEBPACK_IMPORTED_MODULE_3__["default"] // selectedMarker={selectedMarker}
-      , {
-        setSelectedMarker: setSelectedMarker // setTurbineInfo={setTurbineInfo}
-
-      })
-    })]
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ReactApp_styles__WEBPACK_IMPORTED_MODULE_1__.Wrapper, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      className: "main-container",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Report__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          selectedMarker: selectedMarker
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Map__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          setSelectedMarker: setSelectedMarker
+        })
+      })]
+    })
   });
-}; // export default ReactApp;
+};
 
 /***/ }),
 
@@ -3908,17 +3849,15 @@ var ReactApp = function ReactApp() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Wrapper": () => (/* binding */ Wrapper),
-/* harmony export */   "LoadingView": () => (/* binding */ LoadingView)
+/* harmony export */   "Wrapper": () => (/* binding */ Wrapper)
 /* harmony export */ });
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
-var _templateObject, _templateObject2;
+var _templateObject;
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 
 var Wrapper = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral([""])));
-var LoadingView = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    position: absolute;\n    display: flex;\n    align-items: flex-end;\n    justify-content: center;\n    width: 100%;\n    height: 100vh;\n    top: 0;\n    left: 0;\n    background: transparent;\n    z-index: 2;\n\n    p {\n        font-family: Arial, Helvetica, sans-serif;\n        font-weight: 600;\n        display: inline-block;\n        background: white;\n        padding: 20px;\n        border-radius: 10px;\n    }\n"])));
 
 /***/ }),
 
@@ -3938,7 +3877,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_scrollable_list__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-scrollable-list */ "./node_modules/react-scrollable-list/dist/index.js");
 /* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../api */ "./resources/js/api.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _ReportHeader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ReportHeader */ "./resources/js/components/ReportHeader.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -3963,25 +3903,19 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var Report = function Report(_ref) {
   var selectedMarker = _ref.selectedMarker;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
-      turbineData = _useState2[0],
-      setTurbineData = _useState2[1];
+      reportData = _useState2[0],
+      setReportData = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(),
       _useState4 = _slicedToArray(_useState3, 2),
       turbineInfo = _useState4[0],
-      setTurbineInfo = _useState4[1]; // const onReportButtonClick = async () => {
-  //     const data = await fetchReportData(selectedMarker.id);
-  //     setTurbineData(data.report);
-  //     setTurbineInfo(data.turbine);
-  //     console.log("report data", data.report);
-  //     console.log("turbine data", data.turbine);
-  // };
-
+      setTurbineInfo = _useState4[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     var getReportData = /*#__PURE__*/function () {
@@ -3998,14 +3932,11 @@ var Report = function Report(_ref) {
                 data = _context.sent;
 
                 if (selectedMarker > 0) {
-                  setTurbineData(data.report);
-                  setTurbineInfo(data.turbine);
+                  setTurbineInfo(data.turbine[0]);
+                  setReportData(data.report);
                 }
 
-                console.log("report data", data.report);
-                console.log("turbine data", data.turbine);
-
-              case 6:
+              case 4:
               case "end":
                 return _context.stop();
             }
@@ -4019,59 +3950,66 @@ var Report = function Report(_ref) {
     }();
 
     getReportData();
-  }, [selectedMarker]); // const { data: reportData } = useQuery(
-  //     [selectedMarker],
-  //     () => fetchReportData(selectedMarker),
-  //     {
-  //         enabled: !!selectedMarker,
-  //         refetchOnWindowFocus: false,
-  //         staleTime: 60 * 1000 * 5, // 5 minutes
-  //     }
-  // );
-
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-    className: "container mt-5",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-      className: "row justify-content-center",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-        className: "col-md-8",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-          className: "card text-center",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-            className: "card-header",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h2", {
-              children: "React Component in Laravel"
-            }), turbineInfo ? turbineInfo.first : null]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-            type: "button",
-            className: "btn btn-outline-secondary btn-sm" // onClick={onTurbineButtonClick}
-            ,
-            children: "Fetch turbines"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-            type: "button",
-            className: "btn btn-outline-secondary btn-sm" // onClick={onReportButtonClick}
-            ,
-            children: "Fetch a report"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-            className: "card-body",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_scrollable_list__WEBPACK_IMPORTED_MODULE_2__["default"], {
-                listItems: turbineData,
-                heightOfItem: 30,
-                maxItemsToRender: 20,
-                style: {
-                  color: "#333"
-                }
-              })
-            })
-          })]
-        }), turbineData ? turbineData.first : null]
+  }, [selectedMarker]);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+    className: "report-container",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ReportHeader__WEBPACK_IMPORTED_MODULE_4__.ReportHeader, {
+        turbineInfo: turbineInfo
       })
-    })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_scrollable_list__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        listItems: reportData,
+        heightOfItem: 30,
+        maxItemsToRender: 20,
+        style: {
+          color: "#333"
+        }
+      })
+    })]
   });
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Report);
+
+/***/ }),
+
+/***/ "./resources/js/components/ReportHeader.js":
+/*!*************************************************!*\
+  !*** ./resources/js/components/ReportHeader.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ReportHeader": () => (/* binding */ ReportHeader)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+var ReportHeader = function ReportHeader(_ref) {
+  var turbineInfo = _ref.turbineInfo;
+  console.log("header", turbineInfo); // if (turbineInfo) {
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+    className: "report-header",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
+      children: "Turbine Damage Report"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
+      children: ["Turbine Name: ", turbineInfo ? turbineInfo.turbineName : null]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
+      children: ["Site / Farm ID: ", turbineInfo ? turbineInfo.siteId : null]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
+      children: ["Location: ", turbineInfo ? turbineInfo.lat : null, turbineInfo ? ", " : null, turbineInfo ? turbineInfo.lng : null]
+    })]
+  }); // }
+  // return (
+  //     <div>
+  //         <h3>header</h3>
+  //     </div>
+  // );
+};
 
 /***/ }),
 
@@ -37133,6 +37071,19 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
   \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/app.css":
+/*!*******************************!*\
+  !*** ./resources/css/app.css ***!
+  \*******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -73188,7 +73139,8 @@ module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBun
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
 /******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/sass/app.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/sass/app.scss")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/css/app.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

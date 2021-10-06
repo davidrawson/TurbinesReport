@@ -2,8 +2,8 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    height: 300px;
-    width: 400px;
+    height: 490px;
+    width: 490px;
     overflow-y: scroll;
     border: #ddd solid 1px;
 }
@@ -19,9 +19,34 @@
     pointer-events: none;
 }
 
-.Map {
+.main-container {
+    display: grid;
     height: 100vh;
+
+    grid-template-columns: 1fr 1fr;
+    column-gap: 12px;
+
+    align-items: center;
+}
+
+.report-container {
+    /* grid-column-start: 3; */
+    /* grid-column-end: span 3; */
+    height: 80vh;
     width: 100%;
+    margin-left: 12vh;
+    /* align-items: center; */
+}
+
+.report-header {
+    font-size: 16pt;
+}
+.map-container {
+    /* grid-column: 7 / span 4; */
+    height: 70vh;
+    width: 88%;
+    margin-right: 12;
+    /* align-items: center; */
 }
 
 .windTurbine {
