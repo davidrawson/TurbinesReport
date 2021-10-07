@@ -14,8 +14,9 @@ const Marker = ({ setSelectedMarker, id, tooltip }) => {
                 alt="Turbine"
                 width="80"
                 height="80"
+                title={tooltip}
             />
-            <span>{tooltip}</span>
+            {/* <span>{tooltip}</span> */}
         </div>
     );
 };

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Wrapper } from "./ReactApp.styles";
+import { Header } from "./Header";
 import Report from "./Report";
 import Map from "./Map";
 
@@ -8,13 +9,10 @@ export const ReactApp = () => {
 
     return (
         <Wrapper>
-            <div className="main-container">
-                <div>
-                    <Report selectedMarker={selectedMarker}></Report>
-                </div>
-                <div>
-                    <Map setSelectedMarker={setSelectedMarker} />
-                </div>
+            <div className="wrapper">
+                <Header />
+                <Report selectedMarker={selectedMarker}></Report>
+                <Map setSelectedMarker={setSelectedMarker} />
             </div>
         </Wrapper>
     );

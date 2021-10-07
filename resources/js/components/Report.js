@@ -19,7 +19,7 @@ const Report = ({ selectedMarker }) => {
     }, [selectedMarker]);
 
     return (
-        <div className="report-container">
+        <div className="report-sidebar">
             <div>
                 <ReportHeader turbineInfo={turbineInfo} />
             </div>

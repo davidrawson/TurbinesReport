@@ -3622,6 +3622,46 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/js/components/Header.js":
+/*!*******************************************!*\
+  !*** ./resources/js/components/Header.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Header": () => (/* binding */ Header)
+/* harmony export */ });
+/* harmony import */ var _images_wind_turbine_png__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../images/wind_turbine.png */ "./resources/images/wind_turbine.png");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+var Header = function Header() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    className: "header",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+      className: "windTurbine",
+      src: _images_wind_turbine_png__WEBPACK_IMPORTED_MODULE_0__["default"],
+      alt: "Turbine"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h1", {
+      className: "header-text",
+      children: "Asset Inspectors Ltd."
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+      className: "contact-link",
+      href: "http://www.assetinspectors.com/contactus",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
+        className: "header-text",
+        title: "Not yet implemented",
+        children: "Contact Us"
+      })
+    })]
+  });
+};
+
+/***/ }),
+
 /***/ "./resources/js/components/Map.js":
 /*!****************************************!*\
   !*** ./resources/js/components/Map.js ***!
@@ -3754,7 +3794,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 var Marker = function Marker(_ref) {
   var setSelectedMarker = _ref.setSelectedMarker,
       id = _ref.id,
@@ -3764,17 +3803,16 @@ var Marker = function Marker(_ref) {
     setSelectedMarker(id);
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
     onClick: handleClick,
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
       className: "windTurbine",
       src: _images_wind_turbine_png__WEBPACK_IMPORTED_MODULE_1__["default"],
       alt: "Turbine",
       width: "80",
-      height: "80"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-      children: tooltip
-    })]
+      height: "80",
+      title: tooltip
+    })
   });
 };
 
@@ -3795,9 +3833,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _ReactApp_styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ReactApp.styles */ "./resources/js/components/ReactApp.styles.js");
-/* harmony import */ var _Report__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Report */ "./resources/js/components/Report.js");
-/* harmony import */ var _Map__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Map */ "./resources/js/components/Map.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Header */ "./resources/js/components/Header.js");
+/* harmony import */ var _Report__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Report */ "./resources/js/components/Report.js");
+/* harmony import */ var _Map__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Map */ "./resources/js/components/Map.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -3816,23 +3855,20 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var ReactApp = function ReactApp() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
       _useState2 = _slicedToArray(_useState, 2),
       selectedMarker = _useState2[0],
       setSelectedMarker = _useState2[1];
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ReactApp_styles__WEBPACK_IMPORTED_MODULE_1__.Wrapper, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-      className: "main-container",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Report__WEBPACK_IMPORTED_MODULE_2__["default"], {
-          selectedMarker: selectedMarker
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Map__WEBPACK_IMPORTED_MODULE_3__["default"], {
-          setSelectedMarker: setSelectedMarker
-        })
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ReactApp_styles__WEBPACK_IMPORTED_MODULE_1__.Wrapper, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+      className: "wrapper",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Header__WEBPACK_IMPORTED_MODULE_2__.Header, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Report__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        selectedMarker: selectedMarker
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Map__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        setSelectedMarker: setSelectedMarker
       })]
     })
   });
@@ -3952,7 +3988,7 @@ var Report = function Report(_ref) {
     getReportData();
   }, [selectedMarker]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-    className: "report-container",
+    className: "report-sidebar",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ReportHeader__WEBPACK_IMPORTED_MODULE_4__.ReportHeader, {
         turbineInfo: turbineInfo
