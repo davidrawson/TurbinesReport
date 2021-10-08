@@ -1,6 +1,4 @@
 export const ReportHeader = ({ turbineInfo }) => {
-    console.log("header", turbineInfo);
-    // if (turbineInfo) {
     return (
         <div className="report-header">
             <h1>Turbine Damage Report</h1>
@@ -14,10 +12,4 @@ export const ReportHeader = ({ turbineInfo }) => {
             </p>
         </div>
     );
-    // }
-    // return (
-    //     <div>
-    //         <h3>header</h3>
-    //     </div>
-    // );
 };

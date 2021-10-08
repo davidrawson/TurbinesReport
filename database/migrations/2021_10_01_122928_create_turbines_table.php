@@ -24,7 +24,12 @@ class CreateTurbinesTable extends Migration
 
         $this->populateTable();
     }
-
+    
+    /**
+     * populateTable
+     *
+     * @return void
+     */
     public function populateTable() {
         $turbines = [
             [

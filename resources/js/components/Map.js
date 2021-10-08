@@ -10,7 +10,6 @@ const Map = ({ setSelectedMarker }) => {
         const getTurbineData = async () => {
             const data = await fetchTurbineData();
             setTurbineData(data);
-            // console.log("turbine data", data);
         };
         getTurbineData();
     }, []);

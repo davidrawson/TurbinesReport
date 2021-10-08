@@ -16,7 +16,6 @@ const Marker = ({ setSelectedMarker, id, tooltip }) => {
                 height="80"
                 title={tooltip}
             />
-            {/* <span>{tooltip}</span> */}
         </div>
     );
 };
