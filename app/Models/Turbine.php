@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Turbine
+ */
 class Turbine extends Model
 {
     protected $fillable = [
