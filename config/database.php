@@ -3,6 +3,7 @@
 use Illuminate\Support\Str;
 
 define('RDS_HOSTNAME', $_SERVER['RDS_HOSTNAME']);
+define('RDS_PORT', $_SERVER['RDS_PORT']);
 define('RDS_USERNAME', $_SERVER['RDS_USERNAME']);
 define('RDS_PASSWORD', $_SERVER['RDS_PASSWORD']);
 define('RDS_DB_NAME', $_SERVER['RDS_DB_NAME']);
@@ -50,9 +51,9 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'url' => env('DATABASE_URL'),
+            // 'url' => env('DATABASE_URL'),
             'host' => RDS_HOSTNAME,
-            'port' => env('DB_PORT', '3306'),
+            'port' => RDS_PORT,
             'database' => RDS_DB_NAME,
             'username' => RDS_USERNAME,
             'password' => RDS_PASSWORD,
