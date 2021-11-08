@@ -6,13 +6,14 @@
 
 require("./bootstrap");
 
+import { Container } from "postcss";
 import React from "react";
 import ReactDOM from "react-dom";
-import { ReactApp } from "./components/ReactApp";
+import { SpaContainer } from "./components/SpaContainer";
 
 ReactDOM.render(
     <React.StrictMode>
-        <ReactApp />
+        <SpaContainer />
     </React.StrictMode>,
     document.getElementById("root")
 );

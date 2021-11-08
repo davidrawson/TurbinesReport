@@ -3,7 +3,7 @@ import { Header } from "./Header";
 import Report from "./Report";
 import Map from "./Map";
 
-export const ReactApp = () => {
+export const SpaContainer = () => {
     const [selectedMarker, setSelectedMarker] = useState(1);
 
     return (
