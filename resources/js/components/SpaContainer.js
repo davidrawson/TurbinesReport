@@ -4,7 +4,7 @@ import Report from "./Report";
 import Map from "./Map";
 
 export const SpaContainer = () => {
-    const [selectedMarker, setSelectedMarker] = useState(1);
+    const [selectedMarker, setSelectedMarker] = useState();
 
     return (
         <div className="wrapper">
