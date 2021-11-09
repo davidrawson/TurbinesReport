@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\TurbineDataController;
 
 /*
@@ -22,3 +23,4 @@ Route::resource('/turbineData', TurbineDataController::class);
 
 Route::get('/turbineData/{id}', [TurbineDataController::class, 'show']);
 
+URL::forceScheme('https'); 
