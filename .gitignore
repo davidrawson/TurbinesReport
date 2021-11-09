@@ -4,8 +4,6 @@
 /storage/*.key
 /vendor
 codingProcess.md
-.env
-.env.local
 .env.backup.env.example
 .phpunit.result.cache
 docker-compose.override.yml

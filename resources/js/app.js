@@ -6,7 +6,6 @@
 
 require("./bootstrap");
 
-import { Container } from "postcss";
 import React from "react";
 import ReactDOM from "react-dom";
 import { SpaContainer } from "./components/SpaContainer";
