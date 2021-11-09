@@ -20,5 +20,5 @@ Route::get('/', function () {
 
 Route::resource('/turbineData', TurbineDataController::class);
 
-Route::get('/turbineData/{id}', 'TurbineDataController@show');
+Route::get('/turbineData/{id}', [TurbineDataController::class, 'show']);
 
