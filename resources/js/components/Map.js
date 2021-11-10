@@ -25,7 +25,7 @@ const Map = ({ setSelectedMarker }) => {
                     region: "US",
                 }}
                 defaultCenter={{ lat: 55.682, lng: -4.806 }}
-                defaultZoom={16}
+                defaultZoom={15}
                 mapType={"Satellite"}
             >
                 {turbineData.map((marker) => {
