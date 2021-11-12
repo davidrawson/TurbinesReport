@@ -46,7 +46,7 @@ class TurbineReport
                 $component->recordDamage("Coating Damage");
             }
             if ($y % 5 === 0) {
-                $component->recordDamage("Lightning Damage");
+                $component->recordDamage("Lightning Strike");
             }
 
             $this->components[] = $component;
