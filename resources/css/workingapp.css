@@ -1,0 +1,90 @@
+.react-scrollable-list {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 39.5vh;
+    width: 30vw;
+    overflow-y: scroll;
+    border: #ddd solid 1px;
+}
+
+.react-scrollable-list-item {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 30px;
+    padding: 5px;
+    background-color: #f2f2f2;
+    border-bottom: #ddd solid 1px;
+    pointer-events: none;
+}
+
+.windTurbine {
+    width: 150;
+    height: 150;
+}
+
+.report-header {
+    font-size: 16pt;
+}
+
+.hover {
+    background-color: #0078d4;
+}
+.contact-link {
+    justify-content: right;
+}
+
+.header {
+    display: inline-flex;
+    height: 150px;
+    justify-content: space-between;
+    background: linear-gradient(#f4f4f4, #9ccdff);
+    padding-right: 30px;
+}
+
+.header-text {
+    padding-top: 45px;
+}
+.report-sidebar {
+    margin-left: 8vw;
+    width: 45vh;
+}
+
+.map-container {
+    height: 65vh;
+    width: 100%;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(12, [col-start] 1fr);
+    gap: 40px;
+}
+
+.wrapper > * {
+    grid-column: col-start / span 12;
+}
+
+@media (min-width: 500px) {
+    .report-sidebar {
+        grid-column: col-start / span 3;
+        grid-row: 3;
+    }
+
+    .map-container {
+        grid-column: col-start 4 / span 9;
+        grid-row: 3;
+    }
+}
+
+@media (min-width: 700px) {
+    .report-sidebar {
+        grid-column: 1 / span 5;
+        grid-row: 3 / 5;
+    }
+    .map-container {
+        grid-column: 6 / span 6;
+        grid-row: 3 / 5;
+    }
+}

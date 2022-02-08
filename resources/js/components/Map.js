@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from "react";
+// import React, { useEffect, useState } from "react";
 import GoogleMapReact from "google-map-react";
 import Marker from "./Marker";
-import { fetchTurbineData } from "../api";
+// import { fetchTurbineData } from "../api";
 
-const Map = ({ setSelectedMarker }) => {
-    const [turbineData, setTurbineData] = useState([]);
+const Map = ({ selectedMarker, setSelectedMarker, turbineData }) => {
+    // const [turbineData, setTurbineData] = useState([]);
 
-    useEffect(() => {
-        const getTurbineData = async () => {
-            const data = await fetchTurbineData();
-            setTurbineData(data);
-        };
-        getTurbineData();
-    }, []);
+    // useEffect(() => {
+    //     const getTurbineData = async () => {
+    //         const data = await fetchTurbineData();
+    //         setTurbineData(data);
+    //     };
+    //     getTurbineData();
+    // }, []);
 
-    if (turbineData.length < 1) return <div>Loading...</div>;
+    // if (turbineData.length < 1) return <div>Loading...</div>;
 
     return (
         <div className="map-container">
