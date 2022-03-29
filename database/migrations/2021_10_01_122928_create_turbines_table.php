@@ -17,7 +17,7 @@ class CreateTurbinesTable extends Migration
         Schema::create('turbines', function (Blueprint $table) {
             $table->id();
             $table->string('turbineName', 255)->nullable();
-            $table->string('siteId', 4)->nullable();
+            $table->string('siteId', 5)->nullable();
             $table->string('lat', 20)->nullable();
             $table->string('lng', 20)->nullable();
         });

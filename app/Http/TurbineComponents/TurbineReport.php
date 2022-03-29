@@ -37,7 +37,7 @@ class TurbineReport
      *
      * @return void
      */
-    private function generateReport()
+    public function generateReport()
     {
         $y = 1;
         while ($y <= 100) {
